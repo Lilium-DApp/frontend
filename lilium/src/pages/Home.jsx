@@ -14,19 +14,23 @@ function Home() {
         </h2>
         <h3 className="text-xl my-2 font-bold mt-6">Certifier</h3>
         <p>
-        The Certifier page interacts with the contract "https://sepolia.etherscan.io/address/0x10c0075ef95cc8ed31807600d379c05100dc27ad," which has the function of creating new companies (this contract serves as a company factory).
+        The Certifier page interacts with the contract "https://sepolia.etherscan.io/address/0x6407e900164e5a0f4282fba66de9232cb37c8bba," which has the function of creating new companies (this contract serves as a company factory).
         </p>
         <h3 className="text-xl my-2 font-bold mt-6">Company</h3>
         <p>
-        The Company page interacts with the contract "https://sepolia.etherscan.io/address/0x862260cb4b0c908c04389664eb395a144c7840bf." Here, you can mint new tokens and create new auctions for previously minted tokens.
+        The Company page interacts with the contract "https://sepolia.etherscan.io/address/0xD5a08Cc53bE0205323CA83C66C22A13E09b93130." Here, you can mint new tokens and create new auctions for previously minted tokens.
         </p>
         <h3 className="text-xl my-2 font-bold mt-6">Bid</h3>
         <p>
-        The Bid page interacts with the contract "https://sepolia.etherscan.io/address/0x862260cb4b0c908c04389664eb395a144c7840bf". Here, you can place a new bid on tokens currently in auction.
+        The Bid page interacts with the contract "https://sepolia.etherscan.io/address/0xD5a08Cc53bE0205323CA83C66C22A13E09b93130". Here, you can place a new bid on tokens currently in auction.
         </p>
-        <h3 className="text-xl my-2 font-bold mt-6">Token</h3>
+        <h3 className="text-xl my-2 font-bold mt-6">Transfer</h3>
         <p>
-        The Token page interacts with the contract "https://sepolia.etherscan.io/address/0x7d539a6773c550a8e308bbc3a2e68d6326dfe14b." In this page, you can retire tokens to offset carbon footprint or transfer them to other wallets.
+        The transfer page interacts with the contract https://sepolia.etherscan.io/address/0xD5a08Cc53bE0205323CA83C66C22A13E09b93130. It allows you to send minted tokens to other wallets.
+        </p>
+        <h3 className="text-xl my-2 font-bold mt-6">Retire</h3>
+        <p>
+        The retire tokens page interacts with the contract https://sepolia.etherscan.io/address/0x7470d3f1f5e7a747bd1b143a5748c0eaaa3d27a2. It allows you to retire tokens to offset carbon footprint.
         </p>
 
       </div>

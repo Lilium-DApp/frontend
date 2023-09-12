@@ -37,7 +37,7 @@ function Certifier() {
         const signer = await provider.getSigner();
         const selectedAccount = await signer.getAddress();
 
-        const contractAddress = "0x10C0075Ef95cc8ED31807600d379C05100dc27aD";
+        const contractAddress = "0x0505cc9c14d414abed28b8315f4bfb00c3a8aa76";
 
         const companyContract = new ethers.Contract(
           contractAddress,
@@ -103,7 +103,7 @@ function Certifier() {
   return (
     <div className="font-monsterrat">
         <Navbar />
-      <div className="bg-darkgreen w-5/12 rounded-md ml-40 pt-1 shadow-md pb-4">
+      <div className="bg-darkgreen w-4/12 py-12 rounded-md ml-40 shadow-md">
         <h1 className="flex font-bold text-white text-2xl m-6 pl-6 justify-center">
           Register new company
         </h1>
