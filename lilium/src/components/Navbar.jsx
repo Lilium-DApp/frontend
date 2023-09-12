@@ -34,11 +34,30 @@ function NavBar() {
     }
   };
 
+  const handleCertifier = () => {
+    window.location.href = '/certifier';
+  };
+  const handleCompany = () => {
+    window.location.href = '/company';
+  };
+  const handleBid = () => {
+    window.location.href = '/bid';
+  }
+  const handleToken = () => {
+    window.location.href = '/token';
+  }
+
   return (
     <div className="flex justify-between font-semibold text-grey items-center my-2 mx-10 font-montserrat">
-      <span className="flex justify-between items-center gap-14">
-        <img src={logo} alt="logo" width="50" height="50" />
-      </span>
+      <div className="flex gap-5">
+        <span className="flex justify-between items-center gap-14">
+          <img src={logo} alt="logo" width="50" height="50" />
+        </span>
+        <button onClick={handleCertifier} className="hover:scale-110 duration-100 transition">Certifier</button>
+        <button onClick={handleCompany} className="hover:scale-110 duration-100 transition">Company</button>
+        <button onClick={handleBid} className="hover:scale-110 duration-100 transition">Bid</button>
+        <button onClick={handleToken} className="hover:scale-110 duration-100 transition">Token</button>
+      </div>
       <button
         type="button"
         className="hover:bg-hover_grey px-4 py-2 rounded-full border-[1px] border-grey transition duration-300 ease-in-out text-black"
