@@ -15,7 +15,7 @@ import Retire from './pages/Retire';
 function App() {
   return (
     <div>
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Routes>
         <Route path="/" element ={<Home />} />
         <Route path="/transfer" element ={<Transfer />} />
