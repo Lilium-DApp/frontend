@@ -1,7 +1,74 @@
 import logo from "../assets/logo.svg";
 import Navbar from "../components/Navbar";
+import Company from "../abis/Company.json"; // Import your contract ABI
+import React, { useState } from "react";
+import { ethers } from "ethers"; // Import ethers
 
-function Certifier() {
+function Bid() {
+  const [quantity, setQuantity] = useState("");
+  const [pricePerToken, setPricePerToken] = useState("");
+  const [contract, setContract] = useState(null);
+
+  const initializeContract = async () => {
+    try {
+      if (typeof window.ethereum !== "undefined") {
+        const web3 = new Web3(window.ethereum);
+
+        // Request account access
+        const accounts = await web3.eth.requestAccounts();
+        const selectedAccount = accounts[0];
+
+        // Replace YourContractAddress with your actual contract address
+        const contractAddress = "0x862260CB4B0c908c04389664eb395a144C7840Bf";
+
+        const companyContract = new web3.eth.Contract(
+          Company.abi,
+          contractAddress,
+          {
+            from: selectedAccount,
+          }
+        );
+
+        // Now, you can use companyContract to interact with your contract
+        setContract(companyContract);
+      } else {
+        console.error("MetaMask is not installed or not available.");
+      }
+    } catch (error) {
+      console.error("Error initializing contract:", error);
+    }
+  };
+
+  const handleSendBid = async () => {
+    try {
+      // Ensure quantity and pricePerToken are provided and are valid numbers
+      if (!quantity || isNaN(quantity) || !pricePerToken) {
+        console.error("Please enter valid quantity and price per token.");
+        return;
+      }
+
+      // Convert quantity and pricePerToken to appropriate data types
+      const interestedQuantity = ethers.BigNumber.from(quantity);
+      const priceWei = ethers.utils.parseEther(pricePerToken);
+
+      // Call the 'newBid' function on your contract
+      await contract.methods.newBid(interestedQuantity).send({
+        from: userAccount,
+        value: priceWei,
+      });
+
+      // Optionally, you can handle success here
+      console.log("Successfully sent bid.");
+    } catch (error) {
+      // Handle any errors that may occur during the transaction
+      console.error("Error sending bid:", error);
+    }
+  };
+
+  // Initialize the contract when the component mounts
+  useEffect(() => {
+    initializeContract();
+  }, []);
   return (
     <div className="font-monsterrat">
       <Navbar />
@@ -40,4 +107,4 @@ function Certifier() {
   );
 }
 
-export default Certifier;
+export default Bid;
