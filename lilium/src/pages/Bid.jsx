@@ -14,7 +14,8 @@ function Bid() {
     try {
       if (typeof window.ethereum !== "undefined") {
         const provider = new ethers.providers.Web3Provider(window.ethereum)
-        
+        await provider.send('eth_requestAccounts', []); // <- this promps user to connect metamask
+
         const signer = await provider.getSigner();
         const selectedAccount = await signer.getAddress();
 
