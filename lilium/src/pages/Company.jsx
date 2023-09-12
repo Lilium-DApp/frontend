@@ -15,7 +15,7 @@ function Certifier() {
   const initializeContract = async () => {
     try {
       if (typeof window.ethereum !== "undefined") {
-        const provider = new ethers.BrowserProvider(window.ethereum);
+        const provider = new ethers.providers.Web3Provider(window.ethereum)
         const signer = await provider.getSigner();
         const selectedAccount = await signer.getAddress();
 
@@ -27,7 +27,7 @@ function Certifier() {
           signer
         );
 
-        console.log(companyContract.methods)
+        console.log(companyContract.methods);
 
         setUserAccount(selectedAccount);
         setContract(companyContract);
@@ -46,7 +46,7 @@ function Certifier() {
         console.error("Please enter a valid amount.");
         return;
       }
-      
+
       // Call the 'mint' function on your contract
       await contract.mint(amount);
 
@@ -66,7 +66,6 @@ function Certifier() {
         return;
       }
 
-
       // Call the 'newAuction' function on your contract
       await contract.newAuction(auctionAmount, duration, reservePrice);
 
@@ -75,6 +74,16 @@ function Certifier() {
     } catch (error) {
       // Handle any errors that may occur during the transaction
       console.error("Error creating a new auction:", error);
+    }
+  };
+
+  const finishAuction = async () => {
+    try {
+      // Call the 'finishAuction' function on your contract
+      await contract.finishAuction();
+    } catch (error) {
+      // Handle any errors that may occur during the transaction
+      console.error("Error finishing auction:", error);
     }
   };
 
@@ -138,9 +147,14 @@ function Certifier() {
                 onChange={(e) => setReservePrice(e.target.value)}
               />
             </div>
-            <button className="rounded text-darkgreen bg-lightgreen hover:bg-white duration-300 my-2 py-1 font-bold w-96 mb-8"
-            onClick={handleCreateAuction}>
+            <button
+              className="rounded text-darkgreen bg-lightgreen hover:bg-white duration-300 my-2 py-1 font-bold w-96 mb-8"
+              onClick={handleCreateAuction}
+            >
               Create auction
+            </button>
+            <button className="rounded text-darkgreen bg-lightgreen hover:bg-white duration-300 my-2 py-1 font-bold w-96 mb-8" onClick={finishAuction}>
+              Finish auction
             </button>
           </div>
         </div>
