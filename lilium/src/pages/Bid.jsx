@@ -1,35 +1,33 @@
 import logo from "../assets/logo.svg";
 import Navbar from "../components/Navbar";
 import Company from "../abis/Company.json"; // Import your contract ABI
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ethers } from "ethers"; // Import ethers
 
 function Bid() {
   const [quantity, setQuantity] = useState("");
   const [pricePerToken, setPricePerToken] = useState("");
   const [contract, setContract] = useState(null);
+  const [userAccount, setUserAccount] = useState(null);
 
   const initializeContract = async () => {
     try {
       if (typeof window.ethereum !== "undefined") {
-        const web3 = new Web3(window.ethereum);
+        const provider = new ethers.BrowserProvider(window.ethereum);
+        const signer = await provider.getSigner();
+        const selectedAccount = await signer.getAddress();
 
-        // Request account access
-        const accounts = await web3.eth.requestAccounts();
-        const selectedAccount = accounts[0];
-
-        // Replace YourContractAddress with your actual contract address
         const contractAddress = "0x862260CB4B0c908c04389664eb395a144C7840Bf";
 
-        const companyContract = new web3.eth.Contract(
-          Company.abi,
+        const companyContract = new ethers.Contract(
           contractAddress,
-          {
-            from: selectedAccount,
-          }
+          Company.abi,
+          signer
         );
 
-        // Now, you can use companyContract to interact with your contract
+        console.log(companyContract.methods)
+
+        setUserAccount(selectedAccount);
         setContract(companyContract);
       } else {
         console.error("MetaMask is not installed or not available.");
@@ -46,16 +44,15 @@ function Bid() {
         console.error("Please enter valid quantity and price per token.");
         return;
       }
-
-      // Convert quantity and pricePerToken to appropriate data types
-      const interestedQuantity = ethers.BigNumber.from(quantity);
-      const priceWei = ethers.utils.parseEther(pricePerToken);
-
       // Call the 'newBid' function on your contract
-      await contract.methods.newBid(interestedQuantity).send({
-        from: userAccount,
-        value: priceWei,
+      const transaction = await contract.newBid(quantity, {
+        value: pricePerToken,
+        gasLimit: 200000, // Set an appropriate gas limit
+        // Add other transaction options if needed
       });
+      
+      // Wait for the transaction to be mined
+      await transaction.wait();
 
       // Optionally, you can handle success here
       console.log("Successfully sent bid.");
@@ -83,6 +80,8 @@ function Bid() {
               <input
                 type="number "
                 className="text-darkgreen rounded focus:outline-none w-96"
+                value={quantity}
+                onChange={(e) => setQuantity(e.target.value)}
               />
             </div>
             <div className="py-2  flex flex-col">
@@ -90,9 +89,14 @@ function Bid() {
               <input
                 type="text "
                 className="text-darkgreen rounded focus:outline-none w-96"
+                value={pricePerToken}
+                onChange={(e) => setPricePerToken(e.target.value)}
               />
             </div>
-            <button className="rounded text-darkgreen bg-lightgreen hover:bg-white duration-300 my-2 py-1 font-bold w-96 mb-8">
+            <button
+              className="rounded text-darkgreen bg-lightgreen hover:bg-white duration-300 my-2 py-1 font-bold w-96 mb-8"
+              onClick={handleSendBid}
+            >
               Send
             </button>
           </div>

@@ -19,7 +19,6 @@ function Certifier() {
         const signer = await provider.getSigner();
         const selectedAccount = await signer.getAddress();
 
-        // Replace YourContractAddress with your actual contract address
         const contractAddress = "0x862260CB4B0c908c04389664eb395a144C7840Bf";
 
         const companyContract = new ethers.Contract(
@@ -28,8 +27,9 @@ function Certifier() {
           signer
         );
 
+        console.log(companyContract.methods)
+
         setUserAccount(selectedAccount);
-        // Now, you can use companyContract to interact with your contract
         setContract(companyContract);
       } else {
         console.error("MetaMask is not installed or not available.");
@@ -46,7 +46,7 @@ function Certifier() {
         console.error("Please enter a valid amount.");
         return;
       }
-
+      
       // Call the 'mint' function on your contract
       await contract.mint(amount);
 
