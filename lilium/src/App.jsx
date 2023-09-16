@@ -10,6 +10,8 @@ import Bid from "./pages/Bid";
 import Home from "./pages/Home";
 import Transfer from "./pages/Transfer";
 import Retire from "./pages/Retire";
+import Device from "./pages/Device";
+import VerifierState from "./pages/VerifierState";
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
           <Route path="/certifier" element={<Certifier />} />
           <Route path="/company" element={<Company />} />
           <Route path="/bid" element={<Bid />} />
+          <Route path="/device" element={<Device />} />
+          <Route path="/verifierState" element={<VerifierState />} />
         </Routes>
       </BrowserRouter>
     </div>

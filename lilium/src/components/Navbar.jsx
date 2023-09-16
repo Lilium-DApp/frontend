@@ -53,6 +53,14 @@ function NavBar() {
     window.location.href = '/retire';
   }
 
+  const handleDevice = () => {
+    window.location.href = '/device';
+  }
+
+  const handleVerifierState = () => {
+    window.location.href = '/verifierState';
+  }
+
   return (
     <div className="flex justify-between font-semibold text-grey items-center my-2 mx-10 font-montserrat mb-12">
       <div className="flex gap-5">
@@ -64,6 +72,8 @@ function NavBar() {
         <button onClick={handleBid} className="hover:scale-110 duration-100 transition">Bid</button>
         <button onClick={handleTransfer} className="hover:scale-110 duration-100 transition">Transfer</button>
         <button onClick={handleRetire} className="hover:scale-110 duration-100 transition">Retire</button>
+        <button onClick={handleDevice} className="hover:scale-110 duration-100 transition">Device</button>
+        <button onClick={handleVerifierState} className="hover:scale-110 duration-100 transition">Verifier State</button>
       </div>
       <button
         type="button"
