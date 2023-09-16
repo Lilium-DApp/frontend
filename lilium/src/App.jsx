@@ -11,6 +11,8 @@ import Transfer from './pages/Transfer';
 import Retire from './pages/Retire';
 import Device from "./pages/Device";
 import VerifierState from "./pages/VerifierState";
+import IotSimulation from "./pages/IotSimulation";
+import AuxiliarContracts from "./pages/AuxiliarContracts";
 
 function App() {
   return (
