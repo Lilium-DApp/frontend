@@ -10,12 +10,14 @@ import Bid from './pages/Bid';
 import Home from './pages/Home';
 import Transfer from './pages/Transfer';
 import Retire from './pages/Retire';
+import IotSimulation from './pages/IotSimulation';
+import AuxiliarContracts from './pages/AuxiliarContracts';
 
 
 function App() {
   return (
     <div>
-      <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <BrowserRouter >
         <Routes>
         <Route path="/" element ={<Home />} />
         <Route path="/transfer" element ={<Transfer />} />
@@ -23,6 +25,8 @@ function App() {
         <Route path="/certifier" element ={<Certifier />} />
         <Route path="/company" element ={<Company />} />
         <Route path="/bid" element ={<Bid />} />
+        <Route path="/iotsimulation" element ={<IotSimulation />} />
+        <Route path="/auxiliacontracts" element ={<AuxiliarContracts />} />
         </Routes>
       </BrowserRouter>
     </div>

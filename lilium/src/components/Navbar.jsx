@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import logo from "../assets/logo.svg";
+import { Link } from 'react-router-dom';
 
 function NavBar() {
   const [haveMetamask, sethaveMetamask] = useState(true);
@@ -34,36 +35,20 @@ function NavBar() {
     }
   };
 
-  const handleHome = () => {
-    window.location.href = '/';
-  }
-  const handleCertifier = () => {
-    window.location.href = '/certifier';
-  };
-  const handleCompany = () => {
-    window.location.href = '/company';
-  };
-  const handleBid = () => {
-    window.location.href = '/bid';
-  }
-  const handleTransfer = () => {
-    window.location.href = '/transfer';
-  }
-  const handleRetire = () => {
-    window.location.href = '/retire';
-  }
 
   return (
     <div className="flex justify-between font-semibold text-grey items-center my-2 mx-10 font-montserrat mb-12">
       <div className="flex gap-5">
         <span className="flex justify-between items-center gap-14">
-          <button onClick={handleHome} className="hover:scale-110 duration-100 transition"><img src={logo} alt="logo" width="50" height="50" /></button>
+          <Link to='/' className="hover:scale-110 duration-100 transition"><img src={logo} alt="logo" width="50" height="50" /></Link>
         </span>
-        <button onClick={handleCertifier} className="hover:scale-110 duration-100 transition">Certifier</button>
-        <button onClick={handleCompany} className="hover:scale-110 duration-100 transition">Company</button>
-        <button onClick={handleBid} className="hover:scale-110 duration-100 transition">Bid</button>
-        <button onClick={handleTransfer} className="hover:scale-110 duration-100 transition">Transfer</button>
-        <button onClick={handleRetire} className="hover:scale-110 duration-100 transition">Retire</button>
+        <Link to='/certifier' className="hover:scale-110 duration-100 transition p-4">Certifier</Link>
+        <Link to='/company' className="hover:scale-110 duration-100 transition p-4">Company</Link>
+        <Link to='/bid' className="hover:scale-110 duration-100 transition p-4">Bid</Link>
+        <Link to='/transfer' className="hover:scale-110 duration-100 transition p-4">Transfer</Link>
+        <Link to='/retire' className="hover:scale-110 duration-100 transition p-4">Retire</Link>
+        <Link to='/iotsimulation' className="hover:scale-110 duration-100 transition p-4">Iot Simulation </Link>
+        <Link to='/auxiliacontracts' className="hover:scale-110 duration-100 transition p-4">Auxiliar Contracts </Link>
       </div>
       <button
         type="button"
