@@ -35,13 +35,13 @@ function NavBar() {
     }
   };
 
-
   return (
     <div className="flex justify-between font-semibold text-grey items-center my-2 mx-10 font-montserrat mb-12">
       <div className="flex gap-5">
         <span className="flex justify-between items-center gap-14">
           <Link to='/' className="hover:scale-110 duration-100 transition"><img src={logo} alt="logo" width="50" height="50" /></Link>
         </span>
+
         <Link to='/certifier' className="hover:scale-110 duration-100 transition p-4">Certifier</Link>
         <Link to='/company' className="hover:scale-110 duration-100 transition p-4">Company</Link>
         <Link to='/bid' className="hover:scale-110 duration-100 transition p-4">Bid</Link>
@@ -49,6 +49,9 @@ function NavBar() {
         <Link to='/retire' className="hover:scale-110 duration-100 transition p-4">Retire</Link>
         <Link to='/iotsimulation' className="hover:scale-110 duration-100 transition p-4">Iot Simulation </Link>
         <Link to='/auxiliacontracts' className="hover:scale-110 duration-100 transition p-4">Auxiliar Contracts </Link>
+        <Link to='/device' className="hover:scale-110 duration-100 transition p-4">Device </Link>
+        <Link to='/verifierState' className="hover:scale-110 duration-100 transition p-4">Verifier State</Link>
+         
       </div>
       <button
         type="button"
