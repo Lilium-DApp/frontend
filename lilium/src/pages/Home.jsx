@@ -7,7 +7,7 @@ function Home() {
       <Navbar />
       <div className="m-12 w-1/2">
         <h1 className="text-xl my-2">
-        Welcome to Lilium's MVP. Here, 4 pages have been created to interact with the contracts established.
+        Welcome to Lilium's MVP. Here, some pages have been created to interact with the contracts established.
         </h1>
         <h2 className="text-xl my-2">
         In the menu above, you can access the created pages, with each one serving the following functionality:
