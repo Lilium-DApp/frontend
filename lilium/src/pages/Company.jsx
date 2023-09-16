@@ -11,6 +11,7 @@ function Company() {
   const [duration, setDuration] = useState("");
   const [reservePrice, setReservePrice] = useState("");
   const [auctionAmount, setAuctionAmount] = useState("");
+  const [company, setCompany] = useState("");
 
   const initializeContract = async () => {
     try {
@@ -27,10 +28,12 @@ function Company() {
           signer
         );
 
-        console.log(companyContract.methods);
+        const companyStruct = await companyContract.company();
+        setCompany(companyStruct);
 
         setUserAccount(selectedAccount);
         setContract(companyContract);
+        console.log(company.allowance)
       } else {
         console.error("MetaMask is not installed or not available.");
       }
@@ -94,7 +97,25 @@ function Company() {
   return (
     <div className="font-monsterrat">
       <Navbar />
+
       <div className="bg-darkgreen w-4/12 py-12 rounded-md ml-40 shadow-md ">
+        <h1 className="flex font-bold text-white text-2xl m-6 pl-6 justify-center">
+          Company details
+        </h1>
+        <div className="flex flex-col text-white items-center divide-y divide-lightgreen">
+          <div className="w-88  whitespace-normal text-xs">
+            <p className="w-full whitespace-normal ">
+              <img src={`https://ipfs.io/ipfs/${company.cid}`} className="w-40 text-center pb-4"/>
+              <strong>Name:</strong> {company.name}
+              <br />
+              <strong>Token Address:</strong> {company.token}
+              <br />
+              <strong>Country:</strong> {company.country}
+              <br />
+              <strong>Allowance:</strong> {String(company.allowance)}
+            </p>
+          </div>
+        </div>
         <h1 className="flex font-bold text-white text-2xl m-6 pl-6 justify-center">
           Mint new tokens
         </h1>
@@ -153,7 +174,10 @@ function Company() {
             >
               Create auction
             </button>
-            <button className="rounded text-darkgreen bg-lightgreen hover:bg-white duration-300 my-2 py-1 font-bold w-96 mb-8" onClick={finishAuction}>
+            <button
+              className="rounded text-darkgreen bg-lightgreen hover:bg-white duration-300 my-2 py-1 font-bold w-96 mb-8"
+              onClick={finishAuction}
+            >
               Finish auction
             </button>
           </div>
