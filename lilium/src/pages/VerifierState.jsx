@@ -20,7 +20,7 @@ const VerifierState = () => {
 
         const companyContract = new ethers.Contract(
           contractAddress,
-          CarbonCredit.abi,
+          CompanyAbi.abi,
           signer
         );
 
