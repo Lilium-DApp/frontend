@@ -3,8 +3,6 @@ import logo from "../assets/logo.svg";
 import Navbar from "../components/Navbar";
 import CompanyAbi from "../abis/Company.json";
 import { ethers } from "ethers";
-import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
-import { useQuery } from "@apollo/client";
 import gql from "graphql-tag";
 
 const GET_NOTICES = gql`
@@ -30,13 +28,8 @@ function IotSimulation() {
   const [image, setImage] = useState("");
   const [contract, setContract] = useState("");
   const [userAccount, setUserAccount] = useState("");
-  const [graphQlUrl, setGraphQlUrl] = useState ("");
-  const client = new ApolloClient({
-    uri: graphQlUrl,
-    cache: new InMemoryCache(),
-  });
-  const { loading, error, data } = useQuery(GET_NOTICES);
-  const notices = data?.notices.edges || [];
+  const [graphQlUrl, setGraphQlUrl] = useState("");
+  const [payloadImage, setPayloadImage] = useState("");
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -54,6 +47,22 @@ function IotSimulation() {
     }
     setImage(file);
   };
+
+  function hexToString(hex) {
+    let string = "";
+    for (let i = 0; i < hex.length; i += 2) {
+      string += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+    }
+    return string;
+  }
+
+  function stringToImageBase64(string) {
+    console.log(string);
+    const img = new Image();
+    img.src = "data:image/png;base64," + string;
+
+    return img.src;
+  }
 
   const initializeContract = async () => {
     try {
@@ -110,92 +119,121 @@ function IotSimulation() {
     }
   };
 
-  const handleLastNotice = async () => {};
+  const handleLastNotice = async () => {
+    const url = graphQlUrl + "graphql";
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        query:
+          "{ notices(last: 1) { edges { node { index input { index } payload } } } }",
+      }),
+    };
+
+    fetch(url, requestOptions)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Response:", data);
+        const hexString = data.data.notices.edges[0].node.payload;
+        const regularString = hexToString(hexString);
+        const baseString = "data:image/png;base64,";
+        const fullString = baseString + regularString;
+        const cleanedPayloadImage = fullString.replace(/\0/g, ""); // Replace all null characters with an empty string
+        console.log(cleanedPayloadImage)
+        setPayloadImage(cleanedPayloadImage);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
 
   return (
-    <ApolloProvider client={client}>
-      <div className="font-monsterrat">
-        <Navbar />
-        <div className="bg-darkgreen w-4/12 py-12 rounded-md ml-40 shadow-md">
-          <div className="flex flex-col text-white items-center divide-y divide-lightgreen">
-            <div className="py-4">
-              <h1 className="flex font-bold text-white text-2xl m-6 pl-6 justify-center">
-                Iot Simulation
-              </h1>
-              <div className="py-2  flex flex-col">
-                <label>Temperature: </label>
-                <input
-                  value={temperature}
-                  onChange={(e) => setTemperature(e.target.value)}
-                  type="text"
-                  className="text-darkgreen rounded focus:outline-none w-96"
-                />
-              </div>
-
-              <div className="py-2  flex flex-col">
-                <label>Humidity: </label>
-                <input
-                  value={humidity}
-                  onChange={(e) => setHumidity(e.target.value)}
-                  type="text"
-                  className="text-darkgreen rounded focus:outline-none w-96"
-                />
-              </div>
-
-              <div className="py-2 flex flex-col">
-                <label>CO: </label>
-                <input
-                  value={co}
-                  onChange={(e) => setCo(e.target.value)}
-                  type="text "
-                  className="text-darkgreen rounded focus:outline-none w-96"
-                />
-              </div>
-
-              <div className="py-2 flex flex-col">
-                <label>Image: </label>
-                <input
-                  onChange={handleFileChange}
-                  multiple
-                  type="file"
-                  className="w-96"
-                />
-              </div>
-              <button
-                onClick={handleSendIotData}
-                className="rounded text-darkgreen bg-lightgreen hover:bg-white duration-300 my-2 py-1 font-bold w-96"
-              >
-                Send
-              </button>
+    <div className="font-monsterrat">
+      <Navbar />
+      <div className="bg-darkgreen w-4/12 py-12 rounded-md ml-40 shadow-md">
+        <div className="flex flex-col text-white items-center divide-y divide-lightgreen">
+          <div className="py-4">
+            <h1 className="flex font-bold text-white text-2xl m-6 pl-6 justify-center">
+              Iot Simulation
+            </h1>
+            <div className="py-2  flex flex-col">
+              <label>Temperature: </label>
+              <input
+                value={temperature}
+                onChange={(e) => setTemperature(e.target.value)}
+                type="text"
+                className="text-darkgreen rounded focus:outline-none w-96"
+              />
             </div>
-            <div className="w-96 py-4">
-              <div className="py-2 flex flex-col">
-                <label>GraphQL URL: </label>
-                <input
-                  value={graphQlUrl}
-                  onChange={(e) => setGraphQlUrl(e.target.value)}
-                  type="text "
-                  className="text-darkgreen rounded focus:outline-none w-96"
-                />
-              </div>
-              <button
-                onClick={handleLastNotice}
-                className="rounded text-darkgreen bg-lightgreen hover:bg-white duration-300 my-2 py-1 font-bold w-96"
-              >
-                Last notice / predicition
-              </button>
-              {notices.map((notice) => (
-                <li key={notice.node.index}>{notice.node.payload}</li>
-              ))}
+
+            <div className="py-2  flex flex-col">
+              <label>Humidity: </label>
+              <input
+                value={humidity}
+                onChange={(e) => setHumidity(e.target.value)}
+                type="text"
+                className="text-darkgreen rounded focus:outline-none w-96"
+              />
             </div>
+
+            <div className="py-2 flex flex-col">
+              <label>CO: </label>
+              <input
+                value={co}
+                onChange={(e) => setCo(e.target.value)}
+                type="text "
+                className="text-darkgreen rounded focus:outline-none w-96"
+              />
+            </div>
+
+            <div className="py-2 flex flex-col">
+              <label>Image: </label>
+              <input
+                onChange={handleFileChange}
+                multiple
+                type="file"
+                className="w-96"
+              />
+            </div>
+            <button
+              onClick={handleSendIotData}
+              className="rounded text-darkgreen bg-lightgreen hover:bg-white duration-300 my-2 py-1 font-bold w-96"
+            >
+              Send
+            </button>
+          </div>
+          <div className="w-96 py-4">
+            <div className="py-2 flex flex-col">
+              <label>GraphQL URL: </label>
+              <input
+                value={graphQlUrl}
+                onChange={(e) => setGraphQlUrl(e.target.value)}
+                type="text "
+                className="text-darkgreen rounded focus:outline-none w-96"
+              />
+            </div>
+            <button
+              onClick={handleLastNotice}
+              className="rounded text-darkgreen bg-lightgreen hover:bg-white duration-300 my-2 py-1 font-bold w-96"
+            >
+              Last notice / predicition
+            </button>
+            <img src={payloadImage}></img>
           </div>
         </div>
-        <img
-          src={logo}
-          className="w-1/3 bottom-0 right-0 -z-10 absolute overflow-hidden	"
-        />
       </div>
-    </ApolloProvider>
+      <img
+        src={logo}
+        className="w-1/3 bottom-0 right-0 -z-10 absolute overflow-hidden	"
+      />
+    </div>
   );
 }
 

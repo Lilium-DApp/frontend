@@ -13,8 +13,7 @@ import Device from "./pages/Device";
 import VerifierState from "./pages/VerifierState";
 import AuxiliarContracts from "./pages/AuxiliarContracts";
 import IotSimulation from "./pages/IotSimulation";
-import IotSimulation from "./pages/IotSimulation";
-import AuxiliarContracts from "./pages/AuxiliarContracts";
+
 
 function App() {
   return (
