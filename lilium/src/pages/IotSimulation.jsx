@@ -41,11 +41,11 @@ function IotSimulation() {
         const base64String = e.target.result.split(",")[1];
 
         console.log(base64String);
+        setImage(base64String);
       };
 
       reader.readAsDataURL(file);
     }
-    setImage(file);
   };
 
   function hexToString(hex) {
@@ -95,6 +95,13 @@ function IotSimulation() {
     initializeContract();
   }, []);
 
+
+  const jsonData = {
+    'temperature': parseFloat(temperature),
+    'humidity': parseFloat(humidity),
+    'co': parseFloat(co),
+    'base64_image': image,
+  }
   const handleSendIotData = async () => {
     try {
       // Ensure all required fields are filled
@@ -102,14 +109,9 @@ function IotSimulation() {
         console.error("Please fill in all fields.");
         return;
       }
-
+      console.log(jsonData);
       // Call the 'newAuction' function on your contract
-      await contract.verifyRealWorldState({
-        temperature: temperature,
-        humidity: humidity,
-        co: co,
-        base64_image: image,
-      });
+      await contract.verifyRealWorldState(JSON.stringify(jsonData));
 
       // Optionally, you can handle success here
       console.log("Successfully sent data.");

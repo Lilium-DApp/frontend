@@ -81,10 +81,10 @@ function Certifier() {
         );
         setCid(response.data.IpfsHash);
         console.log('Successful upload', response.data.IpfsHash);
+
       } catch (error) {
         console.error('Error uploading file:', error);
       }
-  
      
       await contract.newCompany(cid, name, country, industry, allowance, compensation, agent);
       console.log('Successfully created company');
