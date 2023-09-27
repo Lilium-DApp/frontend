@@ -1,8 +1,26 @@
-# React + Vite
+# Lilium Frontend Repository
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Frontend Architecture
 
-Currently, two official plugins are available:
+The Lilium frontend is built using modern web technologies to deliver a seamless and engaging user experience. Here's an overview of the frontend architecture:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Framework:** We utilize Next.js, a powerful React framework, to build the frontend application. Next.js provides server-side rendering, efficient routing, and other performance optimizations out of the box, enhancing the overall user experience.
+
+**Styling:** For our UI design, we leverage Tailwind CSS. Tailwind CSS is a highly customizable CSS framework that enables rapid and consistent styling
+
+**Blockchain Interaction:** Lilium utilizes Ether.js, a JavaScript library for interacting with the Ethereum blockchain. With Ether.js, we can seamlessly connect the frontend to the blockchain network, enabling functionalities such as buying and retiring carbon credit tokens securely.
+
+## Screenshots
+![Lilium Mockup](https://github.com/Lilium-ZenCon/frontend/assets/99221221/8fc660cd-c056-4a88-a6d4-b7a0614bc8c2)
+
+## Getting Started
+
+To set up the GreenTrace frontend locally, follow these steps:
+
+- Clone this repository: `git clone https://github.com/Lilium-ZenCon/frontend.git`
+- Install the dependencies: `npm install`
+- Start the development server: `npm run dev`
+- In your browser, access the address `http://localhost:3000/`.
+
+
+
