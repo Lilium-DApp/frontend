@@ -35,7 +35,7 @@ const Outputs = () => {
         }
         return string;
       }
-    
+
     const handleAuxiliarContracts = async () => {
         try {
           if (!server) {
@@ -43,7 +43,7 @@ const Outputs = () => {
             return;
           }
           const header = {"ngrok-skip-browser-warning": "69420"}
-          axios.get(server,{ headers: header })
+          axios.get(server + '/inspect/status',{ headers: header })
           .then(function (response) {
             console.log(response)
             setAnswer(hexToString(response.data["reports"]["0"]["payload"]))
@@ -100,6 +100,11 @@ const Outputs = () => {
         <div className='flex justify-around'>
             <div className='flex flex-col items-center'>
                 <h1 className='text-xl text-white font-bold py-1' >Image output</h1>
+                <input
+                    value={graphql}
+                    type="text" 
+                    onChange={(e) => setGraphql(e.target.value)}
+                    className="w-72 h-8 rounded-lg px-4 focus:outline-none text-darkgreen" />
                 <button 
                 onClick={handleLastNotice}
                 className='bg-lightgreen w-72 px-2 h-8 py-4 rounded-lg mt-8 hover:bg-white hover:text-black duration-300 ease-in-out flex items-center justify-center font-semibold'>Request output image</button> 
@@ -113,6 +118,11 @@ const Outputs = () => {
             </div>
             <div className='flex flex-col  items-center'>
                 <h1 className='text-xl text-white font-bold py-1' >Verifier State</h1>
+                <input
+                    value={server}
+                    type="text" 
+                    onChange={(e) => setServer(e.target.value)}
+                    className="w-72 h-8 rounded-lg px-4 focus:outline-none text-darkgreen"/>
                 <button 
                 onClick={handleAuxiliarContracts}
                 className='bg-lightgreen w-72 px-2 h-8 py-4 rounded-lg mt-8 hover:bg-white hover:text-black duration-300 ease-in-out flex items-center justify-center font-semibold'>Request sensors output</button>
