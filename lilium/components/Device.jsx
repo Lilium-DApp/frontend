@@ -2,8 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
-import ForestReserve from '@/abis/ForestReserve'
-
+import ForestReserve from '@/abis/ForestReserve';
 
 const Device = () => {
     const [address, setAddress] = useState('');
@@ -12,15 +11,16 @@ const Device = () => {
     const initializeContract = async () => {
         try {
             if (typeof window.ethereum !== 'undefined') {
-                const contractAddress = '0xb756A79Ff38E1B7976f0CbEe52873a2f46407cdd';
+                const contractAddress =
+                    '0xb756A79Ff38E1B7976f0CbEe52873a2f46407cdd';
                 const provider = new ethers.providers.Web3Provider(
                     window.ethereum
                 );
                 const signer = await provider.getSigner();
 
                 const connect_contract = new ethers.Contract(
-                    contractAddress, 
-                    ForestReserve.abi, 
+                    contractAddress,
+                    ForestReserve.abi,
                     signer
                 );
                 setContract(connect_contract);
@@ -43,9 +43,8 @@ const Device = () => {
                 return;
             }
 
-            await contract.addDevice(address); 
+            await contract.addDevice(address);
             alert('Transaction successful');
-
         } catch (error) {
             console.error('Error:', error);
         }
@@ -66,6 +65,7 @@ const Device = () => {
                     </label>
                     <input
                         className="w-72 h-8 rounded-lg px-4 focus:outline-none text-darkgreen"
+                        placeholder="0x434...4191a"
                         value={address}
                         onChange={(e) => setAddress(e.target.value)}
                     ></input>

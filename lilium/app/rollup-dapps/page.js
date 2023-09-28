@@ -77,6 +77,7 @@ const rollupDapps = () => {
                 <div className='flex flex-col'>
                     <label className=" text-white">Auction Rollup Address:</label>
                     <input
+                        placeholder='0x434...4191a'
                         onChange={(e) => setAuction(e.target.value)}
                         className="w-72 h-8 rounded-lg px-4 focus:outline-none text-darkgreen"
                     ></input>
@@ -84,6 +85,7 @@ const rollupDapps = () => {
                 <div className='flex flex-col'>
                     <label className=" text-white">Verifier Rollup Address:</label>
                     <input
+                        placeholder='0x434...4191a'
                         onChange={(e) => setVerifier(e.target.value)}
                         className="w-72 h-8 rounded-lg px-4 focus:outline-none text-darkgreen"
                     ></input>

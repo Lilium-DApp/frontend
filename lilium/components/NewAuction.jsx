@@ -75,6 +75,7 @@ const NewAuction = () => {
                 <div className="flex flex-col">
                     <label className=" text-white py-1">Amount of auction tokens:</label>
                     <input
+                        placeholder='1000'
                         type='number'
                         onChange={(e) => setAmount(e.target.value)}
                         className="w-72 h-8 rounded-lg px-4 focus:outline-none text-darkgreen"
@@ -83,6 +84,7 @@ const NewAuction = () => {
                     <label className=" text-white py-1">Duration (hours):</label>
                     <input
                         type='number'
+                        placeholder='46'
                         onChange={(e) => setDuratin(e.target.value)}
                         className="w-72 h-8 rounded-lg px-4 focus:outline-none text-darkgreen"
                     ></input>
@@ -91,6 +93,7 @@ const NewAuction = () => {
                     <label className=" text-white py-1">Minumum price:</label>
                     <input
                         type='number'
+                        placeholder='200'
                         onChange={(e) => setPrice(e.target.value)}
                         className="w-72 h-8 rounded-lg px-4 focus:outline-none text-darkgreen"
                     ></input>

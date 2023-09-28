@@ -60,16 +60,19 @@ const Forest = () => {
                 <div className='flex flex-col'>
                     <label className=" text-white py-1" >Geographic location:</label>
                     <input 
+                    placeholder='Brazil'
                     onChange={(e) => setGeographic(e.target.value)}
                     className="w-72 h-8 rounded-lg px-4 focus:outline-none text-darkgreen" ></input>
 
                     <label className=" text-white py-1">Vegetation:</label>
                     <input 
+                    placeholder='Amazon'
                     onChange={(e) => setVegetation(e.target.value)}
                     className="w-72 h-8 rounded-lg px-4 focus:outline-none text-darkgreen" ></input>
 
                     <label className=" text-white py-1">Weather Conditions:</label>
                     <input 
+                    placeholder='Tropical'
                     onChange={(e) => setWeather(e.target.value)}
                     className="w-72 h-8 rounded-lg px-4 focus:outline-none text-darkgreen"  ></input>
 
@@ -77,15 +80,18 @@ const Forest = () => {
                 <div className='flex flex-col'>
                     <label className=" text-white py-1">Carbon Credits Emitted:</label>
                     <input 
+                    placeholder="1000000000"
                     onChange={(e) => setCarbon(e.target.value)}
                     type="number" className="w-72 h-8 rounded-lg px-4 focus:outline-none text-darkgreen" ></input>
 
                     <label className=" text-white py-1">Hourly Compensation:</label>
                     <input 
+                    placeholder="1000"
                     onChange={(e) => setCompensation(e.target.value)}
                     type="number" className="w-72 h-8 rounded-lg px-4 focus:outline-none text-darkgreen" ></input>
                     <label className=" text-white py-1">Agent:</label>
                     <input 
+                    placeholder="0x434...4191a"
                     onChange={(e) => setAgent(e.target.value)}
                     className="w-72 h-8 rounded-lg px-4 focus:outline-none text-darkgreen" ></input>
 

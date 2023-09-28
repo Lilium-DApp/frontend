@@ -66,6 +66,7 @@ const Transfer = () => {
                 <div className="flex flex-col">
                     <label className=" text-white py-1">Amount:</label>
                     <input
+                        placeholder='100'
                         onChange={(e) => setAmount(e.target.value)}
                         type='number'
                         className="w-72 h-8 rounded-lg px-4 focus:outline-none text-darkgreen"
@@ -74,6 +75,7 @@ const Transfer = () => {
                 <div className="flex flex-col">
                     <label className=" text-white py-1">Address:</label>
                     <input
+                        placeholder='0x434...4191a'
                         onChange={(e) => setAddress(e.target.value)}
                         className="w-72 h-8 rounded-lg px-4 focus:outline-none text-darkgreen"
                     ></input>

@@ -64,6 +64,7 @@ const Withdraw = () => {
                 <div className='flex flex-col'>
                     <label className=" text-white py-1">Amount:</label>
                     <input
+                        placeholder='10'
                         onChange={(e) => setAmount(e.target.value)}
                         className="w-72 h-8 rounded-lg px-4 focus:outline-none text-darkgreen"
                     ></input>
