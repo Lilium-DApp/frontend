@@ -55,8 +55,19 @@ const NewAuction = () => {
         }
     }
 
+    const handleFinishAuction = async () => {
+        try {
+            await contract.finishAuction();  
+            alert('Auction finished');
+
+        } catch (error) {
+            console.error('Error creating auction:', error);
+        }
+    }
+
     return (
-        <div>
+        <div className='divide-y divide-lightgreen'>
+            <div>
             <h1 className="text-white font-bold text-3xl flex justify-center mt-8 mb-4">
             Create new auction
             </h1>
@@ -88,10 +99,24 @@ const NewAuction = () => {
             <div className="flex justify-center">
                 <button
                     onClick={handleNewAuction}
-                    className="bg-lightgreen w-72 px-2 h-8 py-4 rounded-lg mt-8 hover:bg-white hover:text-black duration-300 ease-in-out flex items-center justify-center font-semibold"
+                    className="bg-lightgreen w-72 px-2 h-8 py-4 rounded-lg mt-8 hover:bg-white hover:text-black duration-300 ease-in-out flex items-center justify-center font-semibold mb-6"
                 >
                     Start auction
                 </button>
+            </div>
+            </div>
+            <div>
+            <h1 className="text-white font-bold text-3xl flex justify-center mt-6 mb-2">
+            Finish auction
+            </h1>
+            <div className='flex items-center justify-center'>
+            <button
+                    onClick={handleFinishAuction}
+                    className="bg-lightgreen w-72 px-2 h-8 py-4 rounded-lg mt-8 hover:bg-white hover:text-black duration-300 ease-in-out flex items-center justify-center font-semibold"
+                >
+                    Finish auction
+                </button>
+                </div>
             </div>
         </div>
     );
