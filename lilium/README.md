@@ -10,9 +10,6 @@ The Lilium frontend is built using modern web technologies to deliver a seamless
 
 **Blockchain Interaction:** Lilium utilizes Ether.js, a JavaScript library for interacting with the Ethereum blockchain. With Ether.js, we can seamlessly connect the frontend to the blockchain network, enabling functionalities such as buying and retiring carbon credit tokens securely.
 
-## Screenshots
-![Lilium Mockup](https://github.com/Lilium-ZenCon/frontend/assets/99221221/8fc660cd-c056-4a88-a6d4-b7a0614bc8c2)
-
 ## Getting Started
 
 To set up the GreenTrace frontend locally, follow these steps:
