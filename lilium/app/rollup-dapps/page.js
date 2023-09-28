@@ -4,6 +4,8 @@ import { ethers } from 'ethers';
 import Image from 'next/image';
 import logo from 'public/assets/swap-logo.svg';
 import ForestReserve from '@/abis/ForestReserve'
+import Link from 'next/link';
+
 
 
 const rollupDapps = () => {
@@ -63,9 +65,14 @@ const rollupDapps = () => {
             <div className='ml-48 my-8'>
                 <div className='w-1/2 min-h-1/2 p-4 pb-12 bg-darkgreen rounded-lg'>
                 <div>
-            <h1 className="text-white font-bold text-3xl flex justify-center mt-8 mb-4">
-            Rollup DApps Address 
-            </h1>
+            <div className='flex items-center justify-center'>
+                <h1 className="text-white font-bold text-3xl flex justify-center mt-8 mb-4 mr-4">
+                Rollup DApps Address 
+                </h1>
+                <div className='flex items-center'>
+                <Link className='rounded-full bg-lightgreen font-bold h-6 w-6 flex items-center justify-center hover:scale-110 duration-300 mt-4' href='https://google.com'>i</Link>
+                </div>
+            </div>
             <div className="flex items-center justify-center gap-4">    
                 <div className='flex flex-col'>
                     <label className=" text-white">Auction Rollup Address:</label>

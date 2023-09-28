@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 import ForestReserve from '@/abis/ForestReserve'
-// import Company from '@/abis/Company';
+import Link from 'next/link';
 
 const HardwareSimulation = () => {
     const [temperature, setTemperature] = useState('');
@@ -77,19 +77,26 @@ const HardwareSimulation = () => {
 
     return (
         <div>
-            <h1 className="text-white font-bold text-3xl flex justify-center mt-8 mb-4">
+            <div className='flex items-center justify-center'>
+                <h1 className="text-white font-bold text-3xl flex justify-center mt-8 mb-4 mr-4">
                 Hardware Simulation
-            </h1>
+                </h1>
+                <div className='flex items-center'>
+                <Link className='rounded-full bg-lightgreen font-bold h-6 w-6 flex items-center justify-center hover:scale-110 duration-300 mt-4' href='https://google.com'>i</Link>
+                </div>
+            </div>
             <div className="flex justify-around">
                 <div className="flex flex-col">
                     <label className=" text-white py-1">Temperature:</label>
                     <input
+                        placeholder='283.03568'
                         onChange={(e) => setTemperature(e.target.value)}
                         className="w-72 h-8 rounded-lg px-4 focus:outline-none text-darkgreen"
                     ></input>
 
                     <label className=" text-white py-1">Humidity:</label>
                     <input
+                        placeholder='98886.22'
                         onChange={(e) => setHumidity(e.target.value)}
                         className="w-72 h-8 rounded-lg px-4 focus:outline-none text-darkgreen"
                     ></input>
@@ -97,6 +104,7 @@ const HardwareSimulation = () => {
                 <div className="flex flex-col">
                     <label className=" text-white py-1">CO:</label>
                     <input
+                        placeholder='0.007224556'
                         onChange={(e) => setCo(e.target.value)}
                         className="w-72 h-8 rounded-lg px-4 focus:outline-none text-darkgreen"
                     ></input>

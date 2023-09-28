@@ -2,6 +2,7 @@ import Image from 'next/image';
 import React, { useState } from "react";
 import axios from 'axios';
 import gql from "graphql-tag";
+import Link from 'next/link';
 
 
 const GET_NOTICES = gql`
@@ -96,11 +97,19 @@ const Outputs = () => {
 
 	return (
         <div>
-        <h1 className='text-white font-bold text-3xl flex justify-center mt-8 mb-2'>Outputs</h1>
+        <div className='flex items-center justify-center'>
+                <h1 className="text-white font-bold text-3xl flex justify-center mt-8 mb-4 mr-4">
+                Outputs 
+                </h1>
+                <div className='flex items-center'>
+                <Link className='rounded-full bg-lightgreen font-bold h-6 w-6 flex items-center justify-center hover:scale-110 duration-300 mt-4' href='https://google.com'>i</Link>
+                </div>
+            </div>
         <div className='flex justify-around'>
             <div className='flex flex-col items-center'>
                 <h1 className='text-xl text-white font-bold py-1' >Image output</h1>
                 <input
+                    placeholder='GraphQL Server URL'
                     value={graphql}
                     type="text" 
                     onChange={(e) => setGraphql(e.target.value)}
@@ -119,6 +128,7 @@ const Outputs = () => {
             <div className='flex flex-col  items-center'>
                 <h1 className='text-xl text-white font-bold py-1' >Verifier State</h1>
                 <input
+                  placeholder='Server Manager URL'
                     value={server}
                     type="text" 
                     onChange={(e) => setServer(e.target.value)}
