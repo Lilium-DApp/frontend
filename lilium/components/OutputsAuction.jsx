@@ -1,11 +1,12 @@
-import Image from 'next/image';
 import React, { useState } from "react";
 import axios from 'axios';
-import gql from "graphql-tag";
+import Link from 'next/link';
+
 
 const Outputs = () => {
 
-    const [answer, setAnswer] = useState('Click in the button bellow')
+    const [answer, setAnswer] = useState('')
+    const [server, setServer] = useState('')
 
     function hexToString(hex) {
         let string = "";
@@ -17,8 +18,12 @@ const Outputs = () => {
 
     const handleOutputAuction = async () => {
         try {
-          const server = 'http://44.218.89.75:5005/inspect/status'
-          axios.get(server)
+          if (!server) {
+            console.error("Please fill in all fields.");
+            return;
+          }
+          const header = {"ngrok-skip-browser-warning": "69420"}
+          axios.get(server + '/inspect/status',{ headers: header })
           .then(function (response) {
             console.log(response)
             setAnswer(hexToString(response.data["reports"]["0"]["payload"]))
@@ -34,15 +39,29 @@ const Outputs = () => {
 
 	return (
         <div>
-        <h1 className='text-white font-bold text-3xl flex justify-center mt-8 mb-4'>Output</h1>
+        <div className='flex items-center justify-center'>
+                <h1 className="text-white font-bold text-3xl flex justify-center mt-8 mb-4 mr-4">
+                Outputs 
+                </h1>
+                <div className='flex items-center'>
+                <Link className='rounded-full bg-lightgreen font-bold h-6 w-6 flex items-center justify-center hover:scale-110 duration-300 mt-4' href='https://google.com'>i</Link>
+                </div>
+            </div>
         <div className='flex justify-around'>
             <div className='flex flex-col  items-center justify-center'>
-                <div className='flex items-center'>
-                    <h1 className='text-white mt-2 w-72 text-center'>Result: {answer}</h1>
-                </div>
+                <input
+                  placeholder='Server Manager URL'
+                    value={server}
+                    type="text" 
+                    onChange={(e) => setServer(e.target.value)}
+                    className="w-72 h-8 rounded-lg px-4 focus:outline-none text-darkgreen"/>
                 <button 
                 onClick={handleOutputAuction}
                 className='bg-lightgreen w-72 px-2 h-8 py-4 rounded-lg mt-8 hover:bg-white hover:text-black duration-300 ease-in-out flex items-center justify-center font-semibold'>Request Auction State</button>
+                <div>
+                    <h1 className='mt-8 text-white font-semibold'>Result:</h1>
+                    <p className='text-white mt-2 w-72'>{answer}</p>
+                </div>
                 
             </div>
         </div>

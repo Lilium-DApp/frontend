@@ -25,7 +25,7 @@ const Outputs = () => {
 
     const [graphql, setGraphql] = useState('');
     const [server, setServer] = useState('');
-    const [answer, setAnswer] = useState("Click in the button above");
+    const [answer, setAnswer] = useState("");
     const [payloadImage, setPayloadImage] = useState("");
 
 
