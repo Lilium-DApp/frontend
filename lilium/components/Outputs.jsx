@@ -58,7 +58,7 @@ const Outputs = () => {
       }
 
     const handleLastNotice = async () => {
-    const url = graphql + "graphql";
+    const url = graphql + "/graphql";
     const requestOptions = {
         method: "POST",
         headers: {
