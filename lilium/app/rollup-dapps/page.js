@@ -67,7 +67,7 @@ const rollupDapps = () => {
                 <div>
             <div className='flex items-center justify-center'>
                 <h1 className="text-white font-bold text-3xl flex justify-center mt-8 mb-4 mr-4">
-                Rollup DApps Address 
+                Rollup DApp Addresses 
                 </h1>
                 <div className='flex items-center'>
                 <Link className='rounded-full bg-lightgreen font-bold h-6 w-6 flex items-center justify-center hover:scale-110 duration-300 mt-4' href='https://google.com'>i</Link>
