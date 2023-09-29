@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 import ForestReserve from '@/abis/ForestReserve'
+import Link from 'next/link';
 
 const NewAuction = () => {
     const [amount, setAmount] = useState(0);
@@ -68,9 +69,14 @@ const NewAuction = () => {
     return (
         <div className='divide-y divide-lightgreen'>
             <div>
-            <h1 className="text-white font-bold text-3xl flex justify-center mt-8 mb-4">
-            Create new auction
-            </h1>
+            <div className='flex items-center justify-center'>
+                <h1 className="text-white font-bold text-3xl flex justify-center mt-8 mb-4 mr-4">
+                Create new auction
+                </h1>
+                <div className='flex items-center'>
+                <Link className='rounded-full bg-lightgreen font-bold h-6 w-6 flex items-center justify-center hover:scale-110 duration-300 mt-4' href='https://google.com' target="_blank">i</Link>
+                </div>
+            </div>
             <div className="flex justify-around">
                 <div className="flex flex-col">
                     <label className=" text-white py-1">Amount of auction tokens:</label>
@@ -109,9 +115,14 @@ const NewAuction = () => {
             </div>
             </div>
             <div>
-            <h1 className="text-white font-bold text-3xl flex justify-center mt-6 mb-2">
-            Finish auction
-            </h1>
+            <div className='flex items-center justify-center'>
+                <h1 className="text-white font-bold text-3xl flex justify-center mt-8 mb-4 mr-4">
+                Finish auction
+                </h1>
+                <div className='flex items-center'>
+                <Link className='rounded-full bg-lightgreen font-bold h-6 w-6 flex items-center justify-center hover:scale-110 duration-300 mt-4' href='https://google.com' target="_blank">i</Link>
+                </div>
+            </div>
             <div className='flex items-center justify-center'>
             <button
                     onClick={handleFinishAuction}

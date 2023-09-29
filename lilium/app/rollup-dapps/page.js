@@ -70,7 +70,7 @@ const rollupDapps = () => {
                 Rollup DApp Addresses 
                 </h1>
                 <div className='flex items-center'>
-                <Link className='rounded-full bg-lightgreen font-bold h-6 w-6 flex items-center justify-center hover:scale-110 duration-300 mt-4' href='https://google.com'>i</Link>
+                <Link className='rounded-full bg-lightgreen font-bold h-6 w-6 flex items-center justify-center hover:scale-110 duration-300 mt-4' href='https://google.com' target="_blank">i</Link>
                 </div>
             </div>
             <div className="flex items-center justify-center gap-4">    

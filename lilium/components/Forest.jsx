@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import Lilium from '@/abis/Lilium'
+import Link from 'next/link';
+
 
 const Forest = () => {
     const [geographic, setGeographic] = useState('');
@@ -55,7 +57,14 @@ const Forest = () => {
 
 	return (
 		<div>
-            <h1 className='text-white font-bold text-3xl flex justify-center mt-12 mb-4'>Add new forest</h1>
+            <div className='flex items-center justify-center'>
+                <h1 className="text-white font-bold text-3xl flex justify-center mt-8 mb-4 mr-4">
+                Add new forest
+                </h1>
+                <div className='flex items-center'>
+                <Link className='rounded-full bg-lightgreen font-bold h-6 w-6 flex items-center justify-center hover:scale-110 duration-300 mt-4' href='https://google.com' target="_blank">i</Link>
+                </div>
+            </div>
             <div className='flex justify-around'>
                 <div className='flex flex-col'>
                     <label className=" text-white py-1" >Geographic location:</label>
