@@ -120,7 +120,7 @@ const NewAuction = () => {
                 Finish auction
                 </h1>
                 <div className='flex items-center'>
-                <Link className='rounded-full bg-lightgreen font-bold h-6 w-6 flex items-center justify-center hover:scale-110 duration-300 mt-4' href='https://google.com' target="_blank">i</Link>
+                <Link className='rounded-full bg-lightgreen font-bold h-6 w-6 flex items-center justify-center hover:scale-110 duration-300 mt-4' href='https://gist.github.com/henriquemarlon/6ed36a81b1507d977cacb1870abacc18#finish-auction-section' target="_blank">i</Link>
                 </div>
             </div>
             <div className='flex items-center justify-center'>
