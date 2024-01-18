@@ -4,6 +4,7 @@ import logo from '../public/assets/icon.svg';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useMetaMask } from '../contexts/WalletContext';
+import { useContract } from '../contexts/ContractContext';
 import { usePathname } from 'next/navigation';
 
 
@@ -14,6 +15,7 @@ const NavBar = () => {
 
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
+    const { contractBalance, withdraw } = useContract();
 
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen);
@@ -31,10 +33,34 @@ const NavBar = () => {
                         Home
                     </Link>
                     <Link
+                        className={`${path == '/forest' ? "bg-gray-100 hover:bg-hover_grey rounded-lg py-2 px-4 transition duration-300 ease-in-out" : ' hover:bg-hover_grey rounded-lg py-2 px-4 transition duration-300 ease-in-out'}`}
+                        href="/forest"
+                    >
+                        Forest
+                    </Link>
+                    <Link
+                        className={`${path == '/rollup-dapps' ? "bg-gray-100 hover:bg-hover_grey rounded-lg py-2 px-4 transition duration-300 ease-in-out" : ' hover:bg-hover_grey rounded-lg py-2 px-4 transition duration-300 ease-in-out'}`}
+                        href="/rollup-dapps"
+                    >
+                        Rollup DApps
+                    </Link>
+                    <Link
                         className={`${path == '/iot' ? "bg-gray-100 hover:bg-hover_grey rounded-lg py-2 px-4 transition duration-300 ease-in-out" : ' hover:bg-hover_grey rounded-lg py-2 px-4 transition duration-300 ease-in-out'}`}
                         href="/iot"
                     >
                         IoT Simulation
+                    </Link>
+                    <Link
+                        className={`${path == '/auction' ? "bg-gray-100 hover:bg-hover_grey rounded-lg py-2 px-4 transition duration-300 ease-in-out" : ' hover:bg-hover_grey rounded-lg py-2 px-4 transition duration-300 ease-in-out'}`}
+                        href="/auction"
+                    >
+                        Auction
+                    </Link>
+                    <Link
+                        className={`${path == '/offset-carbon-tokens' ? "bg-gray-100 hover:bg-hover_grey rounded-lg py-2 px-4 transition duration-300 ease-in-out" : ' hover:bg-hover_grey rounded-lg py-2 px-4 transition duration-300 ease-in-out'}`}
+                        href='/offset-carbon-tokens'
+                    >
+                        Offset Carbon Tokens
                     </Link>
                 </div>
             </span>
@@ -50,6 +76,9 @@ const NavBar = () => {
                             {account.substring(0, 6) +
                                 '...' +
                                 account.substring(38, 42)} </p>
+                            <div className="flex items-center ml-2 pl-2">
+                                <span>Balance: {contractBalance} LLM</span>
+                            </div>
                         </button>
                         {isDropdownOpen && (
                             <div className="absolute right-0 mt-2 bg-white border border-gray-300 rounded-lg shadow-lg w-full p-2">

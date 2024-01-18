@@ -18,12 +18,14 @@ export default function RootLayout({ children }) {
                 />
             </head>
             <MetaMaskProvider>
+            <ContractContextProvider>
                 
                     <body className="font-montserrat scroll-smooth">
                         <NavBar />
                         {children}
                     </body>
                 
+               </ContractContextProvider>
                </MetaMaskProvider>
             
         </html>

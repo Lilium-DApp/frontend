@@ -15,7 +15,7 @@ const HardwareSimulation = () => {
         try {
             if (typeof window.ethereum !== 'undefined') {
                 const contractAddress =
-                    '0xEcccf7b2522f1e1f60E32F322BCbACC48085dB03';
+                    '0xb756A79Ff38E1B7976f0CbEe52873a2f46407cdd';
                 const provider = new ethers.providers.Web3Provider(
                     window.ethereum
                 );
